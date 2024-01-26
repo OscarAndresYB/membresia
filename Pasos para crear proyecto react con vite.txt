@@ -1,0 +1,7 @@
+1: entrar al cmd y localizarse en escritorio o carpeta donde creara el proyecto
+2: poner el comando create vite@latest
+3: ponerle nombre al proyecto
+4:seleccionar react
+5: seleccionar java script
+ y listo proyecto creado ir a la carpeta iniciar con visual estudi
+ poner comando "npm install" y levantar el proyecto con "npm run dev"
