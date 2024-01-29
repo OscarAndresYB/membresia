@@ -27,22 +27,24 @@ export const datosMiembros = async()=>{
     }
 
 }
-export const agregarMiembros = async(nombre, fecha_nac, telefono, estado, mes, apellido)=>{
+export const agregarMiembros = async(miembro_agregar)=>{
     try {
-        await addDoc(collection(baseDEDatos, coleccion),{
-            nombre: nombre,
-            apellido:apellido,
-            fecha_nac: fecha_nac,
-            mes: mes,
-            telefono:telefono,
-            estado: estado
-        });
+        var referencia_coleccion = collection(baseDEDatos, coleccion);
+        var documento_agregar = {
+            nombre:         miembro_agregar.var_nombre,
+            apellido:       miembro_agregar.var_apellido,
+            fecha_nac:      miembro_agregar.var_fecha_nac,
+            mes:            miembro_agregar.var_mes,
+            telefono:       miembro_agregar.var_telefono,
+            estado:         true
+        };
+        await addDoc(referencia_coleccion,documento_agregar);
         console.log('agregar reunion correcto');
         return 'ok';
             
-    } catch (error) {
+    } catch (e) {
         console.log('agregar reunion error');
-        console.log(error); 
+        console.log(e); 
         return 'error';
     }
 }

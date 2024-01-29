@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Form, Modal } from "react-bootstrap";
 import { agregarMiembros } from "./dataMiembros";
+import { toast } from 'react-toastify';
 
 const AgregarMiembros=({reload})=>{
     
+  const [isDesktop, setIsDesktop] = useState(true);
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsDesktop(false);
+      } else {
+        setIsDesktop(true);
+      }
+    };
 
     const addMiembros = async (e) => {
         e.preventDefault();
@@ -14,32 +25,49 @@ const AgregarMiembros=({reload})=>{
         const apellido = e.target.formApellido.value;
         const fecha_nac = e.target.formFecha_nac.value;
         const telefono = e.target.formTelefono.value;
-        const estado = e.target.formEstado.value;
         
         const fechaDate = new Date(fecha_nac+"T00:00:00");
         const mes = fechaDate.toLocaleDateString('es-ES', { month: 'long' });
     
+        const obj_miembro_agregar = {
+            var_mes:        mes,
+            var_telefono:   telefono,
+            var_nombre :    nombre,
+            var_apellido:   apellido,
+            var_fecha_nac:  fecha_nac
+            
+        }
+        try {
+          const response = await agregarMiembros(obj_miembro_agregar);
+          toast.success( "Cumpleañero ingresado correctamente" )
+          handleClose();
+        reload();
+        } catch (error) {
+          toast.error("Ocurrio un error al ingresar al cumpleañero")
+        }
         
-        const response = await agregarMiembros(
-          nombre,
-          fecha_nac,
-          mes,
-          telefono,
-          estado,
-          apellido
-        );
+
+        
         
         handleClose();
         reload();
       };
+
+      useEffect(() => {
+        window.addEventListener("resize", handleResize);
+    
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
     return(
-        <Container style={{textAlign: "center" }}>
+        <Container >
         
             <Button
                 variant="outline-dark"
-                style={{ fontSize: "2rem"}} 
+                style={{ fontSize: "2rem", marginLeft: isDesktop ? "138px" : "60px"}} 
                 onClick={handleShow}>
-                Agregar Miembro
+                Agregar Miembro 
             </Button>
             
             <Modal show={show} onHide={handleClose} backdrop="static">
@@ -70,7 +98,6 @@ const AgregarMiembros=({reload})=>{
               type="number"
               placeholder="su telefono"
               id="formTelefono"
-              required
             />
             {/* <Form.Label>Estado</Form.Label>
             <Form.Control

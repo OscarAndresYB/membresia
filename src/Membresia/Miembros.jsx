@@ -63,6 +63,7 @@ const Miembros =()=>{
   });
 
   
+
 // datos de mienbros de firebase obtenidos
   const obtenerMiembros= async()=>{
     
@@ -153,9 +154,8 @@ const Miembros =()=>{
 
 
   return (
-    
-      
-        <div style={{ 
+    <>
+    <div style={{ 
           padding:width>1000?50: 0,
           width: "100%", 
           alignContent: "center",
@@ -163,6 +163,7 @@ const Miembros =()=>{
           }}>
       <h1 style={{ color: "#21242F", fontSize: "3rem", textAlign: "center"}}>Lista de Cumpleaños</h1>
         <br/>
+        <br/> 
         <AgregarMiembros 
         onClick={botonAgregarE}
         reload={fetchGeneral}
@@ -241,7 +242,7 @@ const Miembros =()=>{
       
       
       
-    
+      </>
   );
 }
 export default Miembros;
