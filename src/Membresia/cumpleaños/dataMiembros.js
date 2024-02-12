@@ -1,5 +1,5 @@
 import {addDoc, collection, deleteDoc, doc, getDocs, getFirestore, setDoc} from "firebase/firestore"
-import firebaseApp from "./credenciales";
+import firebaseApp from "../credenciales";
 
 const baseDEDatos = getFirestore(firebaseApp)
 const coleccion = "miembros";

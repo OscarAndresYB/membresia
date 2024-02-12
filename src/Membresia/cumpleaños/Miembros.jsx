@@ -1,14 +1,19 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 
 import TablaMiembros from "./TablaMiembros";
-import { datosMiembros, editarMiembros } from "./dataMiembros";
+import { datosMiembros } from "./dataMiembros";
 import AgregarMiembros from "./AgregarMiembros";
 import BuscarMiembros from "./BuscarMiembros";
 import { Button, Form } from "react-bootstrap";
+import NavBar from "../NavBar";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import firebaseApp from "../credenciales";
 
 const Miembros =()=>{
     
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);  
+
     const [divLista, setDivLista] = useState(true);
   
     const [divAgregar, setDivAgregar] = useState(false);
@@ -125,7 +130,7 @@ const Miembros =()=>{
   
   async function fetchGeneral(){
     await obtenerMiembros();
-  };
+  }
   const handleInputChange=(e)=>{
     const {name, value} = e.target;
     setDatosMiembroS({
@@ -151,34 +156,72 @@ const Miembros =()=>{
         window.removeEventListener('resize', handleResize);
       }
   },[width]);
+//   useEffect(() => {
+//     const auth = getAuth(firebaseApp);
+
+//         const unsubscribe = onAuthStateChanged(auth, (user) => {
+//             if (user) {
+//                 El usuario está conectado
+//                 console.log(user);
+//             } else {
+//                 No hay usuario conectado
+//                 console.log(null);
+//             }
+//         });
+
+//         Devuelve una función de limpieza para limpiar los suscriptores cuando el componente se desmonta
+//         return () => unsubscribe();
+//     setIsLoggedIn(true);
+// }, []);
 
 
   return (
     <>
-    <div style={{ 
-          padding:width>1000?50: 0,
+    <NavBar/>
+    <div
+    className="mt-0 pt-0  max-w mx-auto" 
+    style={{ 
+
+          padding:width>1000?200: 0,
           width: "100%", 
           alignContent: "center",
-          alignItems: "center"
-          }}>
-      <h1 style={{ color: "#21242F", fontSize: "3rem", textAlign: "center"}}>Lista de Cumpleaños</h1>
-        <br/>
-        <br/> 
+          alignItems: "center",
+          
+          }}
+          >
+          
+          <div className="mx-auto md:w-1200 w-full md:h-400 h-200">
+            <img 
+            src="https://i.ibb.co/thsh0PB/listacumpleanios.png"
+            // src="../../imagenes/listacumpleaños.png"
+            className="mx-auto block rounded-lg"
+            style={{ width: "auto", height: "auto" }}
+            />
+            </div>
+      
+        
+            {/* {isLoggedIn && <AgregarMiembros />} */}
         <AgregarMiembros 
         onClick={botonAgregarE}
         reload={fetchGeneral}
         />
-        <br/>
+        
+        <div 
+            className="w-xl mx-auto mt-1 "
+            style={{
+            }}
+            >
         <BuscarMiembros
           searchText={searchText} 
           handleSearch={handleSearch} />
-        <br/>
+        
         <TablaMiembros
             datos={filteredData}
             reload={fetchGeneral}
-            clickEditar={botonActualizarE}
+            // clickEditar={botonActualizarE}
         />
-        <div style={{ margin: 30, display: divActualizar ? "block" : "none" }}>
+        </div>
+        {/* <div style={{ margin: 30, display: divActualizar ? "block" : "none" }}>
       <Button
           style={{ float: "right", margin: 30 }}
           variant="outline-danger"
@@ -225,18 +268,18 @@ const Miembros =()=>{
               value={datosMiembroS.telefono}
               onChange={handleInputChange} />
               <Form.Label>Estado</Form.Label>
-            {/* <Form.Control
+            <Form.Control
                 type="boolean"
                 id="formEstado"
                 name="estado"
                 value={datosMiembroS.estado}
                 defaultValue="activo"
-                /> */}
+                />
             <hr />
             <Button type="submit">Guardar</Button>
           </Form>
         </div>
-      </div>
+      </div> */}
       </div>
       
       

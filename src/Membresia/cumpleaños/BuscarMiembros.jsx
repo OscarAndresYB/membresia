@@ -2,8 +2,13 @@ import {Form, InputGroup } from "react-bootstrap";
 
 const BuscarMiembros = ({searchText,handleSearch})=>{
     return (       
-<div className='card-body' style={{paddingBottom:"0px",paddingTop:"0px", textAlign: "center", }}>
-                <InputGroup className="mb-3" style={{ width: "70%", margin: "0 auto" }}>
+<div 
+className='card-body' 
+style={{paddingBottom:"0px",
+paddingTop:"0px", 
+textAlign: "center", }}
+>
+                <InputGroup className="mb-3" style={{ width: "100%", margin: "0 auto" }}>
                     <InputGroup.Text id="basic-addon1"><i className="fas fa-search"  /></InputGroup.Text>
                     <Form.Control
                       type='search'

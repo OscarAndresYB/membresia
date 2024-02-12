@@ -1,15 +1,31 @@
 
-import Miembros from "./Membresia/Miembros"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Miembros from "./Membresia/cumpleaños/Miembros"
+import Limpieza from "./Membresia/limpieza/Limpieza";
 import { ToastContainer } from 'react-toastify';
+// import Home from "./Membresia/Home";
+// import NavBar from "./Membresia/NavBar";
+import Logind from "./Logind/Logind";
 
 
 
 function App() {
 
   return (
-    <>
+    <BrowserRouter>
     
-    <Miembros/>
+    <Routes>
+            <Route path="/" element={<Miembros />}/>
+            <Route path="/miembros" element={<Miembros />}/>
+            <Route path="/limpieza" element={<Limpieza />}/>
+            <Route path="/logind" element={<Logind />}/>
+            
+          
+      
+    </Routes>
+    
+    
+   
     
     <ToastContainer
         autoClose={3000}
@@ -21,7 +37,7 @@ function App() {
         rtl={false}
         pauseOnHover
       />
-    </>
+    </BrowserRouter>
     
   )
 }
