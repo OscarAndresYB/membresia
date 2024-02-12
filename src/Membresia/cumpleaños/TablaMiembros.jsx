@@ -25,7 +25,7 @@ const TablaMiembros = ({datos, reload, clickEditar}) => {
         
       }
     })
-    .filter((element)=> element.fechaNacimiento.getMonth() >= today.getMonth() && element.fechaNacimiento.getDate() >= today.getDate())
+    // .filter((element)=> element.fechaNacimiento.getMonth() >= today.getMonth() && element.fechaNacimiento.getDate() >= today.getDate())
     
     .sort((a, b)=>{
       if (a.fechaNacimiento.getMonth() === b.fechaNacimiento.getMonth()) {

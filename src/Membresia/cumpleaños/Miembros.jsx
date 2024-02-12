@@ -177,7 +177,7 @@ const Miembros =()=>{
 
   return (
     <>
-    <NavBar/>
+    {/* <NavBar/> */}
     <div
     className="mt-0 pt-0  max-w mx-auto" 
     style={{ 
